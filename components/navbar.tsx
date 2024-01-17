@@ -21,7 +21,11 @@ export default function Navbar() {
     setName("");
     try {
       const logoutRes = await axios.post(
-        "http://localhost:1337/api/support-agents/logout",
+        `${
+          process.env.NODE_ENV === "development"
+            ? "http://localhost:1337"
+            : "https://shvasa-server.onrender.com"
+        }/api/support-agents/logout`,
         {},
         {
           headers: {
@@ -43,35 +47,34 @@ export default function Navbar() {
   return (
     <div className="flex items-center justify-center w-screen h-[70px]">
       <div className="flex justify-between bg-[#000]  px-10 w-screen mx-auto py-3.5 fixed top-0 ">
-        
-      <a href="/" className="flex items-center gap-4">
-        <h3>Ticket Support</h3>
-        <h3>HOME</h3>
-      </a>
-      <div className="flex items-center gap-5">
-        {name === "" ? (
-          <>
-            <Link href="/agent/register">Agent Register</Link>
-            <Link href="/agent/login">Agent Login</Link>
-          </>
-        ) : (
-          <>
-            <Link
-              href={`/agent/${agent?._id}/dashboard`}
-              className="flex items-center gap-2 px-4 py-1 border rounded "
-            >
-              <h3 className=" first-letter:uppercase">{name}&apos;s</h3>
-              Dashboard
-            </Link>
-            <button
-              className="px-4 py-1 border rounded "
-              onClick={handleLogout}
-            >
-              Logout
-            </button>
-          </>
-        )}
-      </div>
+        <Link href="/" className="flex items-center gap-4">
+          <h3>Ticket Support</h3>
+          <h3>HOME</h3>
+        </Link>
+        <div className="flex items-center gap-5">
+          {name === "" ? (
+            <>
+              <Link href="/agent/register">Agent Register</Link>
+              <Link href="/agent/login">Agent Login</Link>
+            </>
+          ) : (
+            <>
+              <Link
+                href={`/agent/${agent?._id}/dashboard`}
+                className="flex items-center gap-2 px-4 py-1 border rounded "
+              >
+                <h3 className=" first-letter:uppercase">{name}&apos;s</h3>
+                Dashboard
+              </Link>
+              <button
+                className="px-4 py-1 border rounded "
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

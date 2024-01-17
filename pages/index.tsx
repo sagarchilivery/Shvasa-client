@@ -76,7 +76,11 @@ export default function Home() {
   const fetchTicketsByPage = async (currentPage1: number) => {
     try {
       const ticketsRes = await axios.get(
-        `http://localhost:1337/api/support-tickets?status=${
+        `${
+          process.env.NODE_ENV === "development"
+            ? "http://localhost:1337"
+            : "https://shvasa-server.onrender.com"
+        }/api/support-tickets?status=${
           selectedStatus !== "Select here" ? selectedStatus : ""
         }&severity=${
           selectedSeverity !== "Select here" ? selectedSeverity : ""
@@ -105,7 +109,11 @@ export default function Home() {
     try {
       setLoading(true);
       const ticketsRes = await axios.get(
-        "http://localhost:1337/api/support-tickets?page=1&pageSize=10"
+        `${
+          process.env.NODE_ENV === "development"
+            ? "http://localhost:1337/api/support-tickets?page=1&pageSize=10"
+            : "https://shvasa-server.onrender.com/api/support-tickets?page=1&pageSize=10"
+        }`
       );
       if (ticketsRes.data.success) {
         setTickets(ticketsRes.data.tickets);
@@ -127,7 +135,11 @@ export default function Home() {
   const fetchTicketByFilter = async () => {
     try {
       const FilterRes = await axios.get(
-        `http://localhost:1337/api/support-tickets?status=${
+        `${
+          process.env.NODE_ENV === "development"
+            ? "http://localhost:1337"
+            : "https://shvasa-server.onrender.com"
+        }/api/support-tickets?status=${
           selectedStatus !== "Select here" ? selectedStatus : ""
         }&severity=${
           selectedSeverity !== "Select here" ? selectedSeverity : ""

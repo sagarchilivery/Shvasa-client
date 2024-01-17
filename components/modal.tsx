@@ -24,7 +24,11 @@ export default function BasicModal({ open, setOpen }: any) {
     e.preventDefault();
     try {
       const createRes = await axios.post(
-        "http://localhost:1337/api/support-tickets",
+        `${
+          process.env.NODE_ENV === "development"
+            ? "http://localhost:1337"
+            : "https://shvasa-server.onrender.com"
+        }/api/support-tickets`,
         data
       );
       console.log("createRes: ", createRes);

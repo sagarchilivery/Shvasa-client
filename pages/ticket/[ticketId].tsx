@@ -23,7 +23,11 @@ export default function TicketDetails() {
     setLoading(true);
     try {
       const ticketDetailsRes = await axios.get(
-        `http://localhost:1337/api/support-tickets/${ticketId}`
+        `${
+          process.env.NODE_ENV === "development"
+            ? "http://localhost:1337"
+            : "https://shvasa-server.onrender.com"
+        }/api/support-tickets/${ticketId}`
       );
 
       if (ticketDetailsRes.data.success) {
@@ -40,7 +44,11 @@ export default function TicketDetails() {
   const HandleChangeStatus = async () => {
     try {
       const changeStatusRes = await axios.patch(
-        `http://localhost:1337/api/support-tickets/${ticketId}`,
+        `${
+          process.env.NODE_ENV === "development"
+            ? "http://localhost:1337"
+            : "https://shvasa-server.onrender.com"
+        }/api/support-tickets/${ticketId}`,
         {
           status: selectedStatus,
         },

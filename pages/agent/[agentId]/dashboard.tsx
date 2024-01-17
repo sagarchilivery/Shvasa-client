@@ -21,7 +21,11 @@ export default function Dashboard() {
     try {
       setLoading(true);
       const ticketsRes = await axios.get(
-        "http://localhost:1337/api/support-tickets/agent",
+        `${
+          process.env.NODE_ENV === "development"
+            ? "http://localhost:1337"
+            : "https://shvasa-server.onrender.com"
+        }/api/support-tickets/agent`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -57,8 +61,8 @@ export default function Dashboard() {
         <div className="w-screen">
           <div className=" max-w-[1440px] w-full mx-auto">
             {tickets && tickets.length > 0 ? (
-              <div className=" flex flex-col gap-4">
-                <div className=" grid grid-cols-6 text-center">
+              <div className="flex flex-col gap-4 ">
+                <div className="grid grid-cols-6 text-center ">
                   <div className="">Topic</div>
                   <div className="">Description</div>
                   <div className="">Severity</div>
@@ -71,7 +75,7 @@ export default function Dashboard() {
                     // <Link
                     //   href={`/ticket/${ticket._id}`}
                     //   key={ticket._id}
-                    //   className=" grid grid-cols-5 text-center py-2"
+                    //   className="grid grid-cols-5 py-2 text-center "
                     // >
                     <Link
                       href={`/ticket/${ticket._id}`}

@@ -23,7 +23,11 @@ const AgentLogin: React.FC = () => {
     e.preventDefault();
     try {
       const loginRes = await axios.post(
-        "http://localhost:1337/api/support-agents/login",
+        `${
+          process.env.NODE_ENV === "development"
+            ? "http://localhost:1337"
+            : "https://shvasa-server.onrender.com"
+        }/api/support-agents/login`,
         data
       );
       if (loginRes.data.success) {
@@ -66,12 +70,12 @@ const AgentLogin: React.FC = () => {
     <Baselayout title="Support Ticket - Login">
       <form
         onSubmit={handleLogin}
-        className="flex flex-col -mt-10 w-full gap-4 items-center justify-center  h-screen"
+        className="flex flex-col items-center justify-center w-full h-screen gap-4 -mt-10"
       >
-        <h1 className="text-2xl font-bold mb-4">Agent Login</h1>
+        <h1 className="mb-4 text-2xl font-bold">Agent Login</h1>
 
         {["email", "password"].map((item: any) => (
-          <div key={item} className="grid grid-cols-2 gap-2 items-center">
+          <div key={item} className="grid items-center grid-cols-2 gap-2">
             <label className=" first-letter:uppercase">{item}</label>
             <div className="relative">
               <input
@@ -93,7 +97,7 @@ const AgentLogin: React.FC = () => {
                       setShowPassword(false);
                     }, 2000);
                   }}
-                  className=" cursor-pointer absolute right-2 top-2"
+                  className="absolute cursor-pointer right-2 top-2"
                 />
               )}
             </div>
