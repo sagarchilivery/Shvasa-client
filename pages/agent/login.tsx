@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Baselayout from "@/components/baselayout";
 import { Context } from "@/context";
 import axios from "axios";
@@ -63,7 +64,6 @@ const AgentLogin: React.FC = () => {
     if (agent !== null) {
       router.push("/");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [agent]);
 
   return (

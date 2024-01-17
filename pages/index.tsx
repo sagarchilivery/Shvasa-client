@@ -70,8 +70,10 @@ export default function Home() {
   const [selectedSeverity, setSelectedSeverity] = useState("Select here");
   const [selectedStatus, setSelectedStatus] = useState("Select here");
   const [selectedActivity, setSelectedActivity] = useState("Select here");
+  console.log("selectedActivity: ", selectedActivity);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSortOrder, setSelectedSortOrder] = useState("Select here");
+  console.log("selectedSortOrder: ", selectedSortOrder);
 
   const fetchTicketsByPage = async (currentPage1: number) => {
     try {
@@ -144,7 +146,11 @@ export default function Home() {
         }&severity=${
           selectedSeverity !== "Select here" ? selectedSeverity : ""
         }&sortField=${
-          selectedActivity !== "Select here" ? selectedActivity : ""
+          selectedActivity !== "Select here"
+            ? selectedActivity === "Resolved On"
+              ? "resolvedOn"
+              : "createdOn"
+            : ""
         }&sortOrder=${
           selectedSortOrder !== "Select here"
             ? selectedSortOrder === "Descending"
@@ -222,19 +228,18 @@ export default function Home() {
                 setSelectedOption={setSelectedStatus}
                 options={["New", "Assigned", "Resolved"]}
               />
-              <DropDown
+              {/* <DropDown
                 title="Activity"
-                // selectedActivity, selectedActivity
                 selectedOption={selectedActivity}
                 setSelectedOption={setSelectedActivity}
                 options={["Resolved On", "Created On"]}
-              />
-              <DropDown
+              /> */}
+              {/* <DropDown
                 title="Sort order"
                 selectedOption={selectedSortOrder}
                 setSelectedOption={setSelectedSortOrder}
                 options={["Ascending", "Descending"]}
-              />
+              /> */}
             </div>
             <div className="pb-10 ">
               {tickets.length !== 0 ? (
@@ -270,7 +275,7 @@ export default function Home() {
                             </div>
                             <div className="">{ticket.severity}</div>
                             <div className="">{ticket.type}</div>
-                            <div className="">{ticket.assignedTo.name}</div>
+                            <div className="">{ticket?.assignedTo?.name}</div>
                             <div className="">{ticket.status}</div>
                             <div className="">
                               {DateCalc(ticket.ticketCreatedOn)}
