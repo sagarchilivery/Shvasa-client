@@ -76,7 +76,11 @@ export default function TicketDetails() {
   }, [ticketId]);
 
   useEffect(() => {
-    if (ticketDetails && ticketDetails.assignedTo._id === agent._id) {
+    if (
+      (ticketDetails &&
+        ticketDetails?.assignedTo &&
+        ticketDetails?.assignedTo?._id) === (agent && agent?._id)
+    ) {
       setShowChangeStatus(true);
     } else {
       setShowChangeStatus(false);
