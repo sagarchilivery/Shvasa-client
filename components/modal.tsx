@@ -73,7 +73,7 @@ export default function BasicModal({ open, setOpen }: any) {
           </div>
           <div className="flex flex-col py-5 gap-5 px-5">
             {/* Topic */}
-            <div className="flex gap-10 items-center">
+            <div className="grid grid-cols-2 items-center">
               <label htmlFor="topic">Topic</label>
               <input
                 type="text"
@@ -81,7 +81,7 @@ export default function BasicModal({ open, setOpen }: any) {
                 name="topic"
                 value={data.topic}
                 onChange={HandleInpChange}
-                className=" bg-[#121212] rounded-md outline-none focus:outline-none border-none ring-0 h-8"
+                className=" bg-[#121212] rounded-md outline-none focus:outline-none border-none ring-0 h-8 pl-2 py-1"
                 id="topic"
               />
             </div>
@@ -95,12 +95,12 @@ export default function BasicModal({ open, setOpen }: any) {
                 id="description"
                 value={data.description}
                 onChange={HandleInpChange}
-                className=" resize-none h-[200px] w-full bg-[#121212] rounded-md outline-none focus:outline-none border-none ring-0"
+                className=" resize-none h-[200px] w-full bg-[#121212] pl-2 py-1 rounded-md outline-none focus:outline-none border-none ring-0"
               />
             </div>
 
             {/* Severity */}
-            <div className="flex items-center gap-10">
+            <div className="grid grid-cols-2 gap-10">
               <label htmlFor="severity">Severity</label>
               <Menu>
                 <div className="relative">
@@ -135,7 +135,7 @@ export default function BasicModal({ open, setOpen }: any) {
             </div>
 
             {/* Type */}
-            <div className="flex gap-10 items-center">
+            <div className="grid grid-cols-2 items-center">
               <label htmlFor="type">Type</label>
               <input
                 type="text"
@@ -143,7 +143,7 @@ export default function BasicModal({ open, setOpen }: any) {
                 value={data.type}
                 autoComplete="off"
                 onChange={HandleInpChange}
-                className=" bg-[#121212] rounded-md outline-none focus:outline-none border-none ring-0 h-8"
+                className=" bg-[#121212] rounded-md outline-none focus:outline-none border-none ring-0 h-8 pl-2 py-1"
                 id="type"
               />
             </div>
