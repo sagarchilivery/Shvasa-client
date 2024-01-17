@@ -31,7 +31,6 @@ export default function BasicModal({ open, setOpen }: any) {
         }/api/support-tickets`,
         data
       );
-      console.log("createRes: ", createRes);
       if (createRes.data.success) {
         setData({
           topic: "",

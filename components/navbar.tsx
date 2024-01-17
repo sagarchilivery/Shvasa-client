@@ -33,7 +33,6 @@ export default function Navbar() {
           },
         }
       );
-      console.log("logoutRes: ", logoutRes);
       if (logoutRes.data.success) {
         toast.success(logoutRes.data.message);
         dispatch({ type: "LOGOUT" });

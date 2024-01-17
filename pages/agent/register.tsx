@@ -64,8 +64,6 @@ const AgentLogin: React.FC = () => {
         dispatch({ type: "LOGIN", payload: registerRes.data });
         router.push("/");
       }
-
-      console.log(registerRes);
     } catch (error: any) {
       toast.error(error.response.data.message);
     }

@@ -14,7 +14,6 @@ export default function TicketDetails() {
   const [loading, setLoading] = useState(true);
   const { state } = useContext(Context);
   const { agent, accessToken } = state;
-  console.log("agent: ", accessToken);
   const [showChangeStatus, setShowChangeStatus] = useState(false);
   const [ticketDetails, setTicketDetails] = useState<any>();
   const [selectedStatus, setSelectedStatus] = useState("Select here");
@@ -31,7 +30,6 @@ export default function TicketDetails() {
       );
 
       if (ticketDetailsRes.data.success) {
-        console.log("ticketDetailsRes: ", ticketDetailsRes);
         setTicketDetails(ticketDetailsRes.data.ticket);
         setLoading(false);
       }

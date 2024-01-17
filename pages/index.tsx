@@ -62,18 +62,13 @@ export default function Home() {
   const [tickets, setTickets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [openModal, setOpenModal] = useState(false);
-
   const recordsPerPage = 10;
   const [totalPages, setTotalPages] = useState(1);
-  console.log("totalPages: ", totalPages);
-
   const [selectedSeverity, setSelectedSeverity] = useState("Select here");
   const [selectedStatus, setSelectedStatus] = useState("Select here");
   const [selectedActivity, setSelectedActivity] = useState("Select here");
-  console.log("selectedActivity: ", selectedActivity);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSortOrder, setSelectedSortOrder] = useState("Select here");
-  console.log("selectedSortOrder: ", selectedSortOrder);
 
   const fetchTicketsByPage = async (currentPage1: number) => {
     try {
@@ -119,7 +114,6 @@ export default function Home() {
       );
       if (ticketsRes.data.success) {
         setTickets(ticketsRes.data.tickets);
-        console.log("ticketsRes.data.totalCount: ", ticketsRes.data.totalCount);
         if (ticketsRes.data.totalCount <= 10) {
           setTotalPages(1);
         } else {
