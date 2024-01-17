@@ -264,7 +264,7 @@ export default function Home() {
                             className="grid grid-cols-7 select-none text-center group rounded-md hover:bg-[#272727] justify-between w-full py-2"
                           >
                             <div className="">{ticket.topic}</div>
-                            <div className="max-w-[120px] mx-auto w-full relative">
+                            <div className="max-w-[120px] mx-auto line-clamp-1 w-full relative">
                               {ticket.description}
                             </div>
                             <div className="">{ticket.severity}</div>
