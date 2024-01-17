@@ -5,20 +5,20 @@ import Spinner from "@/components/spinner";
 import Image from "next/image";
 import BasicModal from "@/components/modal";
 
+export function DateCalc(inputDate: any) {
+  const newDate = new Date(inputDate).toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+
+  return newDate;
+}
+
 export default function Home() {
   const [tickets, setTickets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [openModal, setOpenModal] = useState(false);
-
-  function DateCalc(inputDate: any) {
-    const newDate = new Date(inputDate).toLocaleDateString("en-US", {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-    });
-
-    return newDate;
-  }
 
   const fetchTickets = async () => {
     try {
