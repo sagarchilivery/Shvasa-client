@@ -6,7 +6,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import React, { use, useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { DateCalc } from "..";
+import { DateCalc } from "../..";
 
 export default function Dashboard() {
   const router = useRouter();

@@ -54,7 +54,7 @@ export default function Navbar() {
         ) : (
           <>
             <Link
-              href={`/${agent?._id}/dashboard`}
+              href={`/agent/${agent?._id}/dashboard`}
               className=" flex items-center gap-2 border rounded px-4 py-1"
             >
               <h3 className=" first-letter:uppercase">{name}&apos;s</h3>
