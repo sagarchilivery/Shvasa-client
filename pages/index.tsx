@@ -44,7 +44,7 @@ export function DropDown({
                     }}
                     className={`${
                       active ? "bg-blue-500 text-white" : "bg-white text-black"
-                    }`}
+                    } cursor-pointer`}
                   >
                     {ele}
                   </div>
@@ -250,10 +250,12 @@ export default function Home() {
                           <Link
                             href={`/ticket/${ticket._id}`}
                             key={ticket._id}
-                            className="grid grid-cols-7 select-none text-center rounded-md hover:bg-[#272727] justify-between w-full py-2"
+                            className="grid grid-cols-7 select-none text-center group rounded-md hover:bg-[#272727] justify-between w-full py-2"
                           >
                             <div className="">{ticket.topic}</div>
-                            <div className="">{ticket.description}</div>
+                            <div className="max-w-[120px] mx-auto w-full relative">
+                              {ticket.description}
+                            </div>
                             <div className="">{ticket.severity}</div>
                             <div className="">{ticket.type}</div>
                             <div className="">{ticket.assignedTo.name}</div>

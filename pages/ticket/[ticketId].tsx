@@ -6,16 +6,18 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { DateCalc } from "..";
+import { DateCalc, DropDown } from "..";
 
 export default function TicketDetails() {
   const router = useRouter();
   const { ticketId } = router.query;
   const [loading, setLoading] = useState(true);
   const { state } = useContext(Context);
-  const { agent } = state;
+  const { agent, accessToken } = state;
+  console.log("agent: ", accessToken);
   const [showChangeStatus, setShowChangeStatus] = useState(false);
   const [ticketDetails, setTicketDetails] = useState<any>();
+  const [selectedStatus, setSelectedStatus] = useState("Select here");
 
   const fetchTicketDetails = async () => {
     setLoading(true);
@@ -32,6 +34,30 @@ export default function TicketDetails() {
     } catch (error: any) {
       toast.error(error?.data?.message);
       setLoading(false);
+    }
+  };
+
+  const HandleChangeStatus = async () => {
+    try {
+      const changeStatusRes = await axios.patch(
+        `http://localhost:1337/api/support-tickets/${ticketId}`,
+        {
+          status: selectedStatus,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      if (changeStatusRes.data.success) {
+        toast.success("Status changed successfully");
+        setSelectedStatus("Select here");
+        // window.location.reload();
+        fetchTicketDetails();
+      }
+    } catch (error: any) {
+      toast.error(error?.data?.message);
     }
   };
 
@@ -82,8 +108,22 @@ export default function TicketDetails() {
                 ))}
               </div>
               {showChangeStatus && (
-                <div className="flex items-center justify-center w-full mt-14">
-                  <button className="px-4 py-1 border rounded">
+                <div className="flex flex-col items-center justify-center w-full gap-10 mt-14">
+                  <DropDown
+                    title="Change Status"
+                    options={["New", "Assigned", "Resolved"]}
+                    selectedOption={selectedStatus}
+                    setSelectedOption={setSelectedStatus}
+                  />
+                  <button
+                    onClick={HandleChangeStatus}
+                    disabled={selectedStatus === "Select here"}
+                    className={`px-4 py-1 border rounded ${
+                      selectedStatus === "Select here"
+                        ? " cursor-not-allowed"
+                        : ""
+                    }`}
+                  >
                     Change Status
                   </button>
                 </div>
