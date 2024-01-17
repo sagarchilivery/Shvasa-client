@@ -78,7 +78,7 @@ export default function Dashboard() {
                       className="grid grid-cols-6 select-none text-center rounded-md hover:bg-[#272727] justify-between w-full py-2"
                     >
                       <div className="">{ticket.topic}</div>
-                      <div className="">{ticket.description}</div>
+                      <div className=" line-clamp-1">{ticket.description}</div>
                       <div className="">{ticket.severity}</div>
                       <div className="">{ticket.type}</div>
                       <div className="">{ticket.status}</div>
