@@ -73,7 +73,7 @@ const AgentLogin: React.FC = () => {
     <Baselayout title="Support Ticket - Login">
       <form
         onSubmit={handleRegister}
-        className="flex flex-col items-center justify-center w-full h-screen gap-4 -mt-10"
+        className="flex flex-col items-center bg-[#121212] justify-center w-full h-screen gap-4 "
       >
         <h1 className="mb-4 text-2xl font-bold">Agent Register</h1>
 

@@ -87,7 +87,7 @@ export default function TicketDetails() {
 
   return (
     <Baselayout>
-      <div className="w-screen mt-10">
+      <div className="w-screen mt-10 bg-[#121212]">
         <div className=" max-w-[1440px] mx-auto w-full">
           {loading ? (
             <Spinner />

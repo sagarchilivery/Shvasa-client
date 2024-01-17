@@ -44,7 +44,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="flex items-center justify-center w-screen h-[70px]">
+    <div className="flex items-center justify-center w-screen pb-10">
       <div className="flex justify-between bg-[#000]  px-10 w-screen mx-auto py-3.5 fixed top-0 ">
         <Link href="/" className="flex items-center gap-4">
           <h3>Ticket Support</h3>

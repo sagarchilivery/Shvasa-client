@@ -58,7 +58,7 @@ export default function Dashboard() {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="w-screen">
+        <div className="w-screen mt-14">
           <div className=" max-w-[1440px] w-full mx-auto">
             {tickets && tickets.length > 0 ? (
               <div className="flex flex-col gap-4 ">
@@ -72,11 +72,6 @@ export default function Dashboard() {
                 </div>
                 <div className="">
                   {tickets.map((ticket: any) => (
-                    // <Link
-                    //   href={`/ticket/${ticket._id}`}
-                    //   key={ticket._id}
-                    //   className="grid grid-cols-5 py-2 text-center "
-                    // >
                     <Link
                       href={`/ticket/${ticket._id}`}
                       key={ticket._id}
