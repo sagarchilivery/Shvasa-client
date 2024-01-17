@@ -42,8 +42,9 @@ export default function Navbar() {
 
   return (
     <div className="flex justify-between items-center max-w-[1440px] mx-auto h-10 w-screen">
-      <Link href="/" className="">
-        Ticket Support
+      <Link href="/" className="flex items-center gap-4">
+        <h3>Ticket Support</h3>
+        <h3>HOME</h3>
       </Link>
       <div className="flex items-center gap-5">
         {name === "" ? (

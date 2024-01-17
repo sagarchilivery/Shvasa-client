@@ -4,6 +4,7 @@ import axios from "axios";
 import Spinner from "@/components/spinner";
 import Image from "next/image";
 import BasicModal from "@/components/modal";
+import Link from "next/link";
 
 export function DateCalc(inputDate: any) {
   const newDate = new Date(inputDate).toLocaleDateString("en-US", {
@@ -99,9 +100,10 @@ export default function Home() {
                 </div>
                 <div className=" w-full">
                   {tickets.map((ticket: any) => (
-                    <div
+                    <Link
+                      href={`/ticket/${ticket._id}`}
                       key={ticket._id}
-                      className="grid grid-cols-7 cursor-default select-none text-center rounded-md hover:bg-[#272727] justify-between w-full py-2"
+                      className="grid grid-cols-7 select-none text-center rounded-md hover:bg-[#272727] justify-between w-full py-2"
                     >
                       <div className="">{ticket.topic}</div>
                       <div className="">{ticket.description}</div>
@@ -110,7 +112,7 @@ export default function Home() {
                       <div className="">{ticket.assignedTo.name}</div>
                       <div className="">{ticket.status}</div>
                       <div className="">{DateCalc(ticket.ticketCreatedOn)}</div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </div>
