@@ -2,15 +2,29 @@ import { createContext, useReducer } from "react";
 
 export const Context = createContext<any>(null);
 
-const setUserToLocalStorage = ({ payload }: any) => {
+const setAgentToLocalStorage = ({ payload }: any) => {
   if (typeof window !== "undefined") {
     localStorage.setItem("user", JSON.stringify(payload));
   }
 };
 
-const getUserFromLocalStorage = () => {
+const setTokenToLocalStorage = ({ payload }: any) => {
+  if (typeof window !== "undefined") {
+    localStorage.setItem("accessToken", JSON.stringify(payload));
+  }
+};
+
+const getAgentFromLocalStorage = () => {
   if (typeof window !== "undefined") {
     const data = localStorage.getItem("user");
+    return data ? JSON.parse(data) : null;
+  }
+  return null;
+};
+
+const getTokenFromLocalStorage = () => {
+  if (typeof window !== "undefined") {
+    const data = localStorage.getItem("accessToken");
     return data ? JSON.parse(data) : null;
   }
   return null;
@@ -22,21 +36,33 @@ const removeUserfromLocalStorage = () => {
   }
 };
 
+const removeTokenfromLocalStorage = () => {
+  if (typeof window !== "undefined") {
+    localStorage.removeItem("accessToken");
+  }
+};
+
 const InitialState: any = {
-  user: getUserFromLocalStorage(),
-  properties: null,
+  agent: getAgentFromLocalStorage(),
+  accessToken: getTokenFromLocalStorage(),
 };
 
 const rootReducer = (state: any, action: any) => {
   switch (action.type) {
     case "LOGIN": {
-      setUserToLocalStorage({ payload: action.payload });
-      return { ...state, user: action.payload };
+      setAgentToLocalStorage({ payload: action.payload.agent });
+      setTokenToLocalStorage({ payload: action.payload.accessToken });
+      return {
+        ...state,
+        agent: action.payload.agent,
+        accessToken: action.payload.accessToken,
+      };
     }
 
     case "LOGOUT": {
       removeUserfromLocalStorage();
-      return { ...state, user: null };
+      removeTokenfromLocalStorage();
+      return { ...state, agent: null, accessToken: null };
     }
 
     default:
