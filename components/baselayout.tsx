@@ -15,10 +15,10 @@ export default function Baselayout({ title, children }: BaselayoutProps) {
       </Head>
       <div className="flex">
         <section className="flex flex-col w-screen overflow-hidden">
-          <div className="">
+          <div className="z-[100]">
             <Navbar />
           </div>
-          <div className=" min-h-screen overflow-hidden">{children}</div>
+          <div className="min-h-screen overflow-hidden ">{children}</div>
         </section>
       </div>
     </>

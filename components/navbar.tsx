@@ -41,11 +41,13 @@ export default function Navbar() {
   };
 
   return (
-    <div className="flex justify-between items-center max-w-[1440px] mx-auto h-10 w-screen">
-      <Link href="/" className="flex items-center gap-4">
+    <div className="flex items-center justify-center w-screen h-[70px]">
+      <div className="flex justify-between bg-[#000]  px-10 w-screen mx-auto py-3.5 fixed top-0 w-full ">
+        
+      <a href="/" className="flex items-center gap-4">
         <h3>Ticket Support</h3>
         <h3>HOME</h3>
-      </Link>
+      </a>
       <div className="flex items-center gap-5">
         {name === "" ? (
           <>
@@ -56,19 +58,20 @@ export default function Navbar() {
           <>
             <Link
               href={`/agent/${agent?._id}/dashboard`}
-              className=" flex items-center gap-2 border rounded px-4 py-1"
+              className="flex items-center gap-2 px-4 py-1 border rounded "
             >
               <h3 className=" first-letter:uppercase">{name}&apos;s</h3>
               Dashboard
             </Link>
             <button
-              className=" border rounded px-4 py-1"
+              className="px-4 py-1 border rounded "
               onClick={handleLogout}
             >
               Logout
             </button>
           </>
         )}
+      </div>
       </div>
     </div>
   );

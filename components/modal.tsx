@@ -7,6 +7,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
+import toast from "react-hot-toast";
 import { IoMdClose } from "react-icons/io";
 
 export default function BasicModal({ open, setOpen }: any) {
@@ -34,6 +35,9 @@ export default function BasicModal({ open, setOpen }: any) {
           severity: "",
           type: "",
         });
+        toast.success("Ticket created successfully");
+        window.location.reload();
+        setOpen(false);
       }
     } catch (error) {
       console.log("error: ", error);
@@ -64,16 +68,16 @@ export default function BasicModal({ open, setOpen }: any) {
     >
       <Dialog.Panel className="max-w-[500px] bg-[#282828] border max-h-[75vh] overflow-hidden h-full mx-auto w-full">
         <form onSubmit={HandleSubmit} className="">
-          <div className="flex justify-between px-4 py-1 items-center border ">
+          <div className="flex items-center justify-between px-4 py-1 border ">
             <Dialog.Title className="text-lg">Create a ticket</Dialog.Title>
             <IoMdClose
               onClick={() => setOpen(false)}
               className="w-5 h-5 cursor-pointer"
             />
           </div>
-          <div className="flex flex-col py-5 gap-5 px-5">
+          <div className="flex flex-col gap-5 px-5 py-5">
             {/* Topic */}
-            <div className="grid grid-cols-2 items-center">
+            <div className="grid items-center grid-cols-2">
               <label htmlFor="topic">Topic</label>
               <input
                 type="text"
@@ -87,7 +91,7 @@ export default function BasicModal({ open, setOpen }: any) {
             </div>
 
             {/* Description */}
-            <div className="flex gap-10 items-start">
+            <div className="flex items-start gap-10">
               <label htmlFor="description">Description</label>
               <textarea
                 name="description"
@@ -104,10 +108,10 @@ export default function BasicModal({ open, setOpen }: any) {
               <label htmlFor="severity">Severity</label>
               <Menu>
                 <div className="relative">
-                  <Menu.Button className="border px-4 rounded-md">
+                  <Menu.Button className="px-4 border rounded-md">
                     {data.severity !== "" ? data.severity : "Select here"}
                   </Menu.Button>
-                  <Menu.Items className="absolute top-8 w-full left-0">
+                  <Menu.Items className="absolute left-0 w-full top-8">
                     {["Low", "Moderate", "Critical"].map((ele) => (
                       <Menu.Item key={ele} as={Fragment}>
                         {({ active }) => (
@@ -135,7 +139,7 @@ export default function BasicModal({ open, setOpen }: any) {
             </div>
 
             {/* Type */}
-            <div className="grid grid-cols-2 items-center">
+            <div className="grid items-center grid-cols-2">
               <label htmlFor="type">Type</label>
               <input
                 type="text"
